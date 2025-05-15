@@ -1,3 +1,5 @@
+import { cart } from "../data/cart.js";
+import { products } from "../data/products.js";
 let productHTML = ``;
 products.forEach((product) => {
   productHTML += `
@@ -48,36 +50,51 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary" data-product-id="${
-            product.id
-          }" data-product-price="${product.priceCents / 100}">
+          <button 
+          class="add-to-cart-button button-primary" 
+          data-product-id="${product.id}" 
+          data-product-name="${product.name}" 
+          data-product-price="${product.priceCents / 100}"
+          data-product-image="${product.image}"
+          >
             Add to Cart
           </button>
         </div>
         `;
 });
 document.querySelector(".products-grid").innerHTML = productHTML;
+
+function addToCart(productId, productImage, productName, productPrice) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    productId === cartItem.productId && (matchingItem = cartItem);
+  });
+  matchingItem
+    ? (matchingItem.quantity += 1)
+    : cart.push({
+        productId,
+        productImage,
+        productName,
+        productPrice,
+        quantity: 1,
+      });
+}
+function updateCart() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+    document.querySelector(".cart-quantity").innerHTML = cartQuantity;
+  });
+}
 document.querySelectorAll(".add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
-    let cartQuantity = 0;
-    let matchingItem;
     let productId = button.dataset.productId;
-    let price = button.dataset.productPrice;
-    cart.forEach((item) => {
-      productId === item.productId && (matchingItem = item);
-    });
-    matchingItem
-      ? (matchingItem.quantity += 1)
-      : cart.push({
-          productId,
-          price,
-          quantity: 1,
-        });
+    let productImage = button.dataset.productImage;
+    let productName = button.dataset.productName;
+    let productPrice = button.dataset.productPrice;
+    addToCart(productId, productImage, productName, productPrice);
+    updateCart();
     console.log(cart);
-
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-      document.querySelector(".cart-quantity").innerHTML = cartQuantity;
-    });
   });
 });
