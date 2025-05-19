@@ -1,40 +1,41 @@
-let catItemArray=[
-    {
-        image:"images/products/athletic-cotton-socks-6-pairs.jpg",
-        name:" Black and Gray Athletic Cotton Socks - 6 Pairs",
-        price:1090,
-        quantity:2,
-    },
-    {
-        image:"images/products/intermediate-composite-basketball.jpg",
-        name:"Intermediate Size Basketball",
-        price:2095,
-        quantity:1,
-    }
-]
-let cartItem =``;
-catItemArray.forEach((item)=>{
+import { products } from "../data/products.js";
+import { cart, removeFromCart } from "../data/cart.js";
+import { formatCurrency } from "./utils/money.js";
+let cartSummary = ``;
+cart.forEach((cartItem, index) => {
+  let matchingProduct;
+  products.forEach((product) => {
+    product.id === cartItem.productId && (matchingProduct = product);
+  });
+  console.log(88, matchingProduct);
+  cartSummary += `
+ <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
+            <div class="delivery-date">
+              Delivery date: Tuesday, June 21
+            </div>
 
-cartItem+=`
- <div class="cart-item-details-grid">
+            <div class="cart-item-details-grid">
               <img class="product-image"
-                src=${item.image}>
+                src=${matchingProduct.image}>
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  ${item.name}
+                  ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                  $${item.price}
+                ${formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${item.quantity}</span>
+                    Quantity: <span class="quantity-label">${
+                      cartItem.quantity
+                    }</span>
                   </span>
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary jsDeleteQuantity"
+                  data-product-id='${matchingProduct.id}'>
                     Delete
                   </span>
                 </div>
@@ -47,7 +48,7 @@ cartItem+=`
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${index}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
@@ -60,7 +61,7 @@ cartItem+=`
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${index}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -73,7 +74,7 @@ cartItem+=`
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${index}">
                   <div>
                     <div class="delivery-option-date">
                       Monday, June 13
@@ -85,7 +86,20 @@ cartItem+=`
                 </div>
               </div>
             </div>
-`
-console.log(cartItemHtml)
-})
-document.querySelectorAll()
+          </div>
+          </div>
+`;
+});
+console.log(cart);
+
+document.querySelector(".js-order-summary").innerHTML = cartSummary;
+document.querySelectorAll(".jsDeleteQuantity").forEach((deleteBtn) => {
+  let productId = deleteBtn.dataset.productId;
+  deleteBtn.addEventListener("click", () => {
+    console.log("delete clicked");
+    removeFromCart(productId);
+    //  remove product HTML using DOM
+    console.log(document.querySelector(`.js-cart-item-container-${productId}`))
+    document.querySelector(`.js-cart-item-container-${productId}`).remove();
+  });
+});
