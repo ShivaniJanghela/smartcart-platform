@@ -96,10 +96,8 @@ document.querySelector(".js-order-summary").innerHTML = cartSummary;
 document.querySelectorAll(".jsDeleteQuantity").forEach((deleteBtn) => {
   let productId = deleteBtn.dataset.productId;
   deleteBtn.addEventListener("click", () => {
-    console.log("delete clicked");
     removeFromCart(productId);
     //  remove product HTML using DOM
-    console.log(document.querySelector(`.js-cart-item-container-${productId}`))
     document.querySelector(`.js-cart-item-container-${productId}`).remove();
   });
 });
