@@ -4,13 +4,14 @@ import { formatCurrency } from "./utils/money.js";
 import { deliveryOptions } from "../data/dileveryOptions.js";
 import dayjs from "https://esm.sh/dayjs";
 
+
 export function deliveryDate(addDays) {
   let today = dayjs();
   let deliveryDate = today.add(addDays, "days");
   let formattedDeliveryDate = deliveryDate.format("dddd, MMM D");
   return formattedDeliveryDate;
 }
-
+function renderOrderSummary(){
 let cartSummary = ``;
 cart.forEach((cartItem) => {
   let matchingProduct;
@@ -119,7 +120,9 @@ document.querySelectorAll(".js-delivery-option")
 .forEach((deliveryOptionBtn) => {
     deliveryOptionBtn.addEventListener("click", () => {
       const { productId, deliveryOptionId } = deliveryOptionBtn.dataset;
-      console.log("first",productId, deliveryOptionId)
       updateDeliveryOption(productId, deliveryOptionId);
+      renderOrderSummary()
     });
   });
+}
+renderOrderSummary()

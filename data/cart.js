@@ -16,6 +16,11 @@ function saveToStroage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+// Alogithum
+// 1. check if product already in cart(true/false)
+// 2. true - increase quantity by 1
+// 3. false - add it to cart
+
 export function addToCart(productId) {
   let matchingItem;
 
@@ -33,6 +38,11 @@ export function addToCart(productId) {
   saveToStroage();
 }
 
+// Alogithum
+// 1. create new array
+// 2. loop through the original cart
+// 3. add each product to the new array,except for the matching productId
+
 export function removeFromCart(productId) {
   let newCart = [];
 
@@ -44,6 +54,12 @@ export function removeFromCart(productId) {
   cart = newCart;
   saveToStroage();
 }
+
+// Alogithum
+// 1. need to know the product that we want to update and delivery option we choose
+// 2. looop through the cart and find the product with the help of productId
+// 3. update the deliveryOptionId of the product in original cart
+
 export function updateDeliveryOption(productId,deliveryOptionId){
   let matchingItem;
   cart.forEach((cartItem)=>{
