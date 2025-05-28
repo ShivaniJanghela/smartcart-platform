@@ -1,8 +1,12 @@
 import { products, getProduct } from "../../data/products.js";
 import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { formatCurrency } from "../utils/money.js";
-import {deliveryOptions,getDeliveryOption} from "../../data/dileveryOptions.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/dileveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 import dayjs from "https://esm.sh/dayjs";
 
 export function renderOrderSummary() {
@@ -37,11 +41,14 @@ export function renderOrderSummary() {
                       cartItem.quantity
                     }</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-update-quantity-link"
+                  data-product-id='${matchingProduct.id}'
+                  data-cart-quantity='${cartItem.quantity}'>
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary jsDeleteQuantity"
-                  data-product-id='${matchingProduct.id}'>
+                  <span class="delete-quantity-link link-primary js-delete-quantity-link"
+                  data-product-id='${matchingProduct.id}'
+                  >
                     Delete
                   </span>
                 </div>
@@ -90,7 +97,7 @@ export function renderOrderSummary() {
       </div>
 `;
     });
-    
+
     return html;
   }
 
@@ -103,17 +110,20 @@ export function renderOrderSummary() {
 
   document.querySelector(".js-order-summary").innerHTML = cartSummary;
 
-  document.querySelectorAll(".jsDeleteQuantity").forEach((deleteBtn) => {
+  document.querySelectorAll(".js-delete-quantity-link").forEach((deleteBtn) => {
     let productId = deleteBtn.dataset.productId;
     deleteBtn.addEventListener("click", () => {
       removeFromCart(productId);
-      //  remove product HTML using DOM
-      document.querySelector(`.js-cart-item-container-${productId}`).remove();
+      //  To remove product HTML we can either use DOM or regenate HTML using renderOrderSummary.
+      // document.querySelector(`.js-cart-item-container-${productId}`).remove();
+      renderOrderSummary();
       renderPaymentSummary();
+      renderCheckoutHeader();
     });
   });
 
-  document.querySelectorAll(".js-delivery-option")
+  document
+    .querySelectorAll(".js-delivery-option")
     .forEach((deliveryOptionBtn) => {
       deliveryOptionBtn.addEventListener("click", () => {
         const { productId, deliveryOptionId } = deliveryOptionBtn.dataset;
@@ -122,4 +132,18 @@ export function renderOrderSummary() {
         renderPaymentSummary();
       });
     });
+  // document.querySelectorAll(".js-update-quantity-link").forEach((updateBtn) => {
+  //   updateBtn.addEventListener("click", (event) => {
+  //     const {productId ,cartQuantity}= updateBtn.dataset;
+  //     console.log(event.target)
+  //     // document.querySelectorAll('.quantity-label').forEach((element)=>{
+  //     // element.target.innerHTML='';
+  //     // })
+  //     updateBtn.innerHTML = `
+  //       <input type="number" class="quantity-input" style="width:30px" value =${cartQuantity} >
+  //       <span class="save-quantity-link link-primary" style="color:green">Save</span>
+  //     `;
+  //     // updateBtn.classList.toggle('is-editing-quantity')
+  //   });
+  // });
 }

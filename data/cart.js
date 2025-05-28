@@ -1,16 +1,19 @@
-export let cart = JSON.parse(localStorage.getItem("cart")) || [
+export let cart;
+function loadFromStroage(){
+  cart = JSON.parse(localStorage.getItem("cart")) || [
   {
     productId: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
     quantity: 2,
-    deliveryOptionId:'1'
+    deliveryOptionId: "1",
   },
   {
     productId: "8c9c52b5-5a19-4bcb-a5d1-158a74287c53",
     quantity: 1,
-    deliveryOptionId:'2'
-
+    deliveryOptionId: "2",
   },
 ];
+}
+loadFromStroage();
 
 function saveToStroage() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -32,8 +35,7 @@ export function addToCart(productId) {
     : cart.push({
         productId,
         quantity: 1,
-        deliveryOptionId:'1'
-
+        deliveryOptionId: "1",
       });
   saveToStroage();
 }
@@ -60,16 +62,14 @@ export function removeFromCart(productId) {
 // 2. looop through the cart and find the product with the help of productId
 // 3. update the deliveryOptionId of the product in original cart
 
-export function updateDeliveryOption(productId,deliveryOptionId){
+export function updateDeliveryOption(productId, deliveryOptionId) {
   let matchingItem;
-  cart.forEach((cartItem)=>{
-if(productId===cartItem.productId){
-  matchingItem=cartItem;
-    
-
-}
-  })
-  matchingItem.deliveryOptionId=deliveryOptionId;
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+  matchingItem.deliveryOptionId = deliveryOptionId;
   saveToStroage();
 }
 
