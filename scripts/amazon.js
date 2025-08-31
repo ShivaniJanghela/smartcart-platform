@@ -1,6 +1,5 @@
-import { cart, addToCart } from "../data/cart.js";
+import { cart, addToCart,updateCart} from "../data/cart.js";
 import { products } from "../data/products.js";
-import { formatCurrency } from "./utils/money.js";
 let productHTML = ``;
 products.forEach((product) => {
   productHTML += `
@@ -31,7 +30,7 @@ products.forEach((product) => {
             <div class="product-quantity-and-sizechart">
               <div class="product-quantity-container">
                 <select>
-                  <option selected value="1">1</option>
+                  <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -62,19 +61,20 @@ products.forEach((product) => {
         </div>
         `;
 });
+let cartQuantity=JSON.parse(localStorage.getItem("cartQuantity"))|| 0;
+document.querySelector(".cart-quantity").innerHTML = cartQuantity;
+
 document.querySelector(".products-grid").innerHTML = productHTML;
 
-function updateCart() {
-  let cartQuantity = 0;
-  cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
-    document.querySelector(".cart-quantity").innerHTML = cartQuantity;
-  });
-}
 document.querySelectorAll(".add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
     let productId = button.dataset.productId;
-    addToCart(productId);
-    updateCart();
+
+    // find the <select> inside the same product container
+    let container = button.closest(".product-container");
+    let selectEl = container.querySelector(".product-quantity-container select");
+    let productQuantity = parseInt(selectEl.value, 10);
+
+    addToCart(productId, productQuantity);
   });
 });
