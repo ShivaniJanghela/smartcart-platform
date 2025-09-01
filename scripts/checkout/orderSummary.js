@@ -1,5 +1,6 @@
 import { products, getProduct } from "../../data/products.js";
 import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
+import { updateCart, saveToStroage } from "../../data/cart.js";
 import { formatCurrency } from "../utils/money.js";
 import {
   deliveryOptions,
@@ -33,24 +34,34 @@ export function renderOrderSummary() {
                   ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                $${formatCurrency(matchingProduct.priceCents)}
+                ${matchingProduct.getPrice()}
                 </div>
                 <div class="product-quantity">
-                  <span>
-                    Quantity: <span class="quantity-label">${
-                      cartItem.quantity
-                    }</span>
-                  </span>
-                  <span class="update-quantity-link link-primary js-update-quantity-link"
-                  data-product-id='${matchingProduct.id}'
-                  data-cart-quantity='${cartItem.quantity}'>
-                    Update
-                  </span>
-                  <span class="delete-quantity-link link-primary js-delete-quantity-link"
-                  data-product-id='${matchingProduct.id}'
+                <span class="delete-quantity-link link-primary js-delete-quantity-link a-icon-small-trash"
+                    data-product-id='${matchingProduct.id}'
+                    style="display:${
+                      cartItem.quantity > 1 ? "none" : "inline-block"
+                    }"
                   >
-                    Delete
                   </span>
+                <span class="decrement-quantity-link link-primary js-decrement-quantity-link a-icon-small-minus"
+                    data-product-id='${matchingProduct.id}'
+                    data-cart-quantity='${cartItem.quantity}'
+                    style="display:${
+                      cartItem.quantity > 1 ? "inline-block" : "none"
+                    }"
+                  >
+                  </span>
+                  <span>
+                   <span class="quantity-label js-quantity-label">${
+                     cartItem.quantity
+                   }</span>
+                  </span>
+                  <span class="update-quantity-link link-primary js-update-quantity-link a-icon-small-add"
+                    data-product-id='${matchingProduct.id}'
+                    data-cart-quantity='${cartItem.quantity}'>
+                  </span>
+                  
                 </div>
               </div>
 
@@ -132,18 +143,48 @@ export function renderOrderSummary() {
         renderPaymentSummary();
       });
     });
-  // document.querySelectorAll(".js-update-quantity-link").forEach((updateBtn) => {
-  //   updateBtn.addEventListener("click", (event) => {
-  //     const {productId ,cartQuantity}= updateBtn.dataset;
-  //     console.log(event.target)
-  //     // document.querySelectorAll('.quantity-label').forEach((element)=>{
-  //     // element.target.innerHTML='';
-  //     // })
-  //     updateBtn.innerHTML = `
-  //       <input type="number" class="quantity-input" style="width:30px" value =${cartQuantity} >
-  //       <span class="save-quantity-link link-primary" style="color:green">Save</span>
-  //     `;
-  //     // updateBtn.classList.toggle('is-editing-quantity')
-  //   });
-  // });
+
+  document.querySelectorAll(".js-update-quantity-link").forEach((updateBtn) => {
+    updateBtn.addEventListener("click", () => {
+      let { productId, cartQuantity } = updateBtn.dataset;
+      cartQuantity = parseInt(cartQuantity);
+      cartQuantity += 1;
+      cart.forEach((cartItem) => {
+        console.log("first");
+        if (cartItem.productId === productId) {
+          cartItem.quantity = cartQuantity;
+          console.log(cartItem.quantity);
+        }
+        updateCart();
+        saveToStroage();
+        renderOrderSummary();
+        renderPaymentSummary();
+        renderCheckoutHeader();
+      });
+    });
+  });
+
+  document
+    .querySelectorAll(".js-decrement-quantity-link")
+    .forEach((updateBtn) => {
+      updateBtn.addEventListener("click", () => {
+        let { productId, cartQuantity } = updateBtn.dataset;
+        cartQuantity = parseInt(cartQuantity);
+        if (cartQuantity > 1) {
+          cartQuantity -= 1;
+        }
+        cart.forEach((cartItem) => {
+          console.log("first");
+          if (cartItem.productId === productId) {
+            cartItem.quantity = cartQuantity;
+            console.log(cartItem.quantity);
+          }
+          updateCart();
+          saveToStroage();
+          renderOrderSummary();
+          renderPaymentSummary();
+          renderCheckoutHeader();
+        });
+      });
+    });
 }

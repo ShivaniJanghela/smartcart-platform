@@ -154,3 +154,9 @@
   padding: 8px;
   border-radius: 50px;
 }
+
+.product-quantity-and-sizechart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
