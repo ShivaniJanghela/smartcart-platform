@@ -160,3 +160,20 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.notFound{
+  width: 100vw;
+  margin: 5rem 10rem 0 10rem;
+  font-size: large;
+  font-weight: 400;
+
+}
+.amazon-header-middle-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Highlight when input is focused */
+.amazon-header-middle-section:focus-within {
+  outline: 2px solid rgb(255, 153, 0);
+  border-radius: 4px; /* optional, makes it look cleaner */
+}

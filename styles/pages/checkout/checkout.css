@@ -200,7 +200,7 @@
   padding-top: 18px;
 }
 
-.place-order-button {
+.js-place-order {
   width: 100%;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -266,4 +266,29 @@
   width: 15px;
   border: none;
   outline: none;
+}
+
+/* Empty Cart State Styling */
+.empty-cart-container {
+  text-align: center;
+  padding: 40px 20px;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.empty-cart-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #0F1111;
+}
+
+.empty-cart-link {
+  padding: 10px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  display: inline-block;
+  color: #0F1111;
+  border: 1px solid #FCD200;
+  text-align: center;
 }

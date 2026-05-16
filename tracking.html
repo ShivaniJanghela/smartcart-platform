@@ -2,10 +2,7 @@
 <html>
   <head>
     <title>Tracking</title>
-
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
+    <!-- This code is needed for responsive design to work. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Load a font called Roboto from Google Fonts. -->
@@ -21,17 +18,15 @@
   <body>
     <div class="amazon-header">
       <div class="amazon-header-left-section">
-        <a href="amazon.html" class="header-link">
-          <img class="amazon-logo"
-            src="images/amazon-logo-white.png">
-          <img class="amazon-mobile-logo"
-            src="images/amazon-mobile-logo-white.png">
+        <a href="amazon.html" class="header-link" style="text-decoration: none;">
+          <div class="brand-logo">
+            Smart<span class="logo-accent">Cart</span>
+          </div>
         </a>
       </div>
 
       <div class="amazon-header-middle-section">
         <input class="search-bar" type="text" placeholder="Search">
-
         <button class="search-button">
           <img class="search-icon" src="images/icons/search-icon.png">
         </button>
@@ -39,13 +34,14 @@
 
       <div class="amazon-header-right-section">
         <a class="orders-link header-link" href="orders.html">
-          <span class="returns-text">Returns</span>
-          <span class="orders-text">& Orders</span>
+          <!-- <span class="returns-text">Returns</span> -->
+          <span class="orders-text">Orders</span>
         </a>
 
         <a class="cart-link header-link" href="checkout.html">
           <img class="cart-icon" src="images/icons/cart-icon.png">
-          <div class="cart-quantity">3</div>
+          <!-- Dynamically driven cart badge hook -->
+          <div class="cart-quantity js-cart-quantity">0</div>
           <div class="cart-text">Cart</div>
         </a>
       </div>
@@ -57,36 +53,45 @@
           View all orders
         </a>
 
-        <div class="delivery-date">
+        <!-- Added js-delivery-date hook -->
+        <div class="delivery-date js-delivery-date">
           Arriving on Monday, June 13
         </div>
 
-        <div class="product-info">
+        <!-- Added js-product-name hook -->
+        <div class="product-info js-product-name">
           Black and Gray Athletic Cotton Socks - 6 Pairs
         </div>
 
-        <div class="product-info">
+        <!-- Added js-product-quantity hook -->
+        <div class="product-info js-product-quantity">
           Quantity: 1
         </div>
 
-        <img class="product-image" src="images/products/athletic-cotton-socks-6-pairs.jpg">
+        <!-- Added js-product-image hook -->
+        <img class="product-image js-product-image" src="images/products/athletic-cotton-socks-6-pairs.jpg">
 
-        <div class="progress-labels-container">
-          <div class="progress-label">
+       <div class="progress-labels-container">
+          <!-- We added hook classes here so JS can add/remove 'current-status' -->
+          <div class="progress-label js-status-preparing">
             Preparing
           </div>
-          <div class="progress-label current-status">
+          <div class="progress-label js-status-shipped">
             Shipped
           </div>
-          <div class="progress-label">
+          <div class="progress-label js-status-delivered">
             Delivered
           </div>
         </div>
 
         <div class="progress-bar-container">
-          <div class="progress-bar"></div>
+          <!-- Added js-progress-bar hook here so JS can change the width% -->
+          <div class="progress-bar js-progress-bar"></div>
         </div>
       </div>
     </div>
+
+    <!-- Script to execute dynamic data injection -->
+    <script type="module" src="scripts/trackingPage.js"></script>
   </body>
 </html>

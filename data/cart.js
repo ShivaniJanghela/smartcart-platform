@@ -93,3 +93,9 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
   matchingItem.deliveryOptionId = deliveryOptionId;
   saveToStroage();
 }
+
+export function clearCart() {
+  cart = []; // Empty the global cart array
+  saveToStroage(); // Sync the empty cart to localStorage
+  updateCart(); // Update the navbar cart quantity badge to 0
+}

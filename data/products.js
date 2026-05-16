@@ -18,12 +18,13 @@ class Products {
     this.name = productDetails.name;
     this.rating = productDetails.rating;
     this.priceCents = productDetails.priceCents;
+    this.keywords=productDetails.keywords;
   }
   getStarURL() {
     return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
   getPrice() {
-    return `$${formatCurrency(this.priceCents)}`;
+    return `₹${formatCurrency(this.priceCents)}`;
   }
   extraInfoHtml() {
     return "";
@@ -52,7 +53,7 @@ export const products = [
       stars: 4.5,
       count: 87,
     },
-    priceCents: 1090,
+    priceCents: 49900, // ₹299
     keywords: ["socks", "sports", "apparel"],
   },
   {
@@ -63,7 +64,7 @@ export const products = [
       stars: 4,
       count: 127,
     },
-    priceCents: 2095,
+    priceCents: 129999, // ₹1299
     keywords: ["sports", "basketballs"],
   },
   {
@@ -74,7 +75,7 @@ export const products = [
       stars: 4.5,
       count: 56,
     },
-    priceCents: 799,
+    priceCents: 49900, // ₹499
     keywords: ["tshirts", "apparel", "mens"],
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png",
@@ -87,7 +88,7 @@ export const products = [
       stars: 5,
       count: 2197,
     },
-    priceCents: 1899,
+    priceCents: 189978, // ₹1899
     keywords: ["toaster", "kitchen", "appliances"],
   },
   {
@@ -98,7 +99,7 @@ export const products = [
       stars: 4,
       count: 37,
     },
-    priceCents: 2067,
+    priceCents: 79900, // ₹799
     keywords: ["plates", "kitchen", "dining"],
   },
   {
@@ -109,7 +110,7 @@ export const products = [
       stars: 4.5,
       count: 175,
     },
-    priceCents: 3499,
+    priceCents: 149900, // ₹1499
     keywords: ["kitchen", "cookware"],
   },
   {
@@ -120,7 +121,7 @@ export const products = [
       stars: 4.5,
       count: 317,
     },
-    priceCents: 2400,
+    priceCents: 89965, // ₹899
     keywords: ["hoodies", "sweaters", "apparel"],
   },
   {
@@ -131,7 +132,7 @@ export const products = [
       stars: 4.5,
       count: 144,
     },
-    priceCents: 3599,
+    priceCents: 139945, // ₹1399
     keywords: ["bathroom", "washroom", "restroom", "towels", "bath towels"],
   },
   {
@@ -142,7 +143,7 @@ export const products = [
       stars: 4.5,
       count: 305,
     },
-    priceCents: 2899,
+    priceCents: 39900, // ₹399
     keywords: ["bathroom", "cleaning"],
   },
   {
@@ -153,7 +154,7 @@ export const products = [
       stars: 4,
       count: 89,
     },
-    priceCents: 3390,
+    priceCents: 249927, // ₹2499
     keywords: ["shoes", "running shoes", "footwear"],
   },
   {
@@ -164,7 +165,7 @@ export const products = [
       stars: 4.5,
       count: 235,
     },
-    priceCents: 2070,
+    priceCents: 59958, // ₹599
     keywords: ["robe", "swimsuit", "swimming", "bathing", "apparel"],
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png",
@@ -177,7 +178,7 @@ export const products = [
       stars: 4.5,
       count: 30,
     },
-    priceCents: 1560,
+    priceCents: 79962, // ₹799
     keywords: ["accessories", "shades"],
   },
   {
@@ -188,7 +189,7 @@ export const products = [
       stars: 4.5,
       count: 562,
     },
-    priceCents: 2499,
+    priceCents: 149900, // ₹1499
     keywords: ["footwear", "sandals", "womens", "beach", "summer"],
   },
   {
@@ -199,7 +200,7 @@ export const products = [
       stars: 4.5,
       count: 232,
     },
-    priceCents: 4599,
+    priceCents: 199987, // ₹1999
     keywords: ["bedroom", "curtains", "home"],
   },
   {
@@ -210,7 +211,7 @@ export const products = [
       stars: 4,
       count: 160,
     },
-    priceCents: 1699,
+    priceCents: 79900, // ₹799
     keywords: ["shorts", "apparel", "mens"],
   },
   {
@@ -221,7 +222,7 @@ export const products = [
       stars: 5,
       count: 846,
     },
-    priceCents: 3074,
+    priceCents: 169999, // ₹1699
     keywords: ["water boiler", "appliances", "kitchen"],
   },
   {
@@ -232,7 +233,7 @@ export const products = [
       stars: 4,
       count: 99,
     },
-    priceCents: 2374,
+    priceCents: 199084, // ₹199
     keywords: ["kleenex", "tissues", "kitchen", "tissues box", "napkins"],
   },
   {
@@ -243,7 +244,7 @@ export const products = [
       stars: 4,
       count: 215,
     },
-    priceCents: 2200,
+    priceCents: 49900, // ₹499
     keywords: ["hats", "straw hats", "summer", "apparel"],
   },
   {
@@ -254,7 +255,7 @@ export const products = [
       stars: 4.5,
       count: 52,
     },
-    priceCents: 1799,
+    priceCents: 69999, // ₹699
     keywords: ["jewelry", "accessories", "womens"],
   },
   {
@@ -265,7 +266,7 @@ export const products = [
       stars: 4.5,
       count: 2465,
     },
-    priceCents: 1374,
+    priceCents: 89918, // ₹899
     keywords: ["hooded", "hoodies", "sweaters", "womens", "apparel"],
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png",
@@ -278,7 +279,7 @@ export const products = [
       stars: 4.5,
       count: 119,
     },
-    priceCents: 1250,
+    priceCents: 79900, // ₹799
     keywords: ["bathmat", "bathroom", "home"],
   },
   {
@@ -289,7 +290,7 @@ export const products = [
       stars: 4,
       count: 326,
     },
-    priceCents: 2640,
+    priceCents: 169900, // ₹1699
     keywords: ["shoes", "flats", "womens", "footwear"],
   },
   {
@@ -300,7 +301,7 @@ export const products = [
       stars: 4.5,
       count: 2556,
     },
-    priceCents: 1599,
+    priceCents: 99900, // ₹999
     keywords: ["tshirts", "shirts", "apparel", "mens"],
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png",
@@ -313,7 +314,7 @@ export const products = [
       stars: 4.5,
       count: 2286,
     },
-    priceCents: 8300,
+    priceCents: 229987, // ₹2299
     keywords: ["garbage", "bins", "cans", "kitchen"],
   },
   {
@@ -324,7 +325,7 @@ export const products = [
       stars: 4,
       count: 456,
     },
-    priceCents: 2399,
+    priceCents: 199900, // ₹1999
     keywords: ["bedroom", "bed sheets", "sheets", "covers", "home"],
   },
   {
@@ -335,7 +336,7 @@ export const products = [
       stars: 5,
       count: 83,
     },
-    priceCents: 1250,
+    priceCents: 39965, // ₹399
     keywords: ["hats", "winter hats", "beanies", "tuques", "apparel", "womens"],
   },
   {
@@ -346,7 +347,7 @@ export const products = [
       stars: 4.5,
       count: 9017,
     },
-    priceCents: 2290,
+    priceCents: 119925, // ₹1199
     keywords: ["pants", "apparel", "mens"],
   },
   {
@@ -357,7 +358,7 @@ export const products = [
       stars: 4,
       count: 229,
     },
-    priceCents: 3890,
+    priceCents: 299900, // ₹2999
     keywords: ["shoes", "running shoes", "footwear", "mens"],
   },
   {
@@ -368,7 +369,7 @@ export const products = [
       stars: 3.5,
       count: 42,
     },
-    priceCents: 1690,
+    priceCents: 99999, // ₹999
     keywords: ["sunglasses", "glasses", "accessories", "shades"],
   },
   {
@@ -379,7 +380,7 @@ export const products = [
       stars: 4.5,
       count: 511,
     },
-    priceCents: 6797,
+    priceCents: 359900, // ₹3599
     keywords: ["cooking set", "kitchen"],
   },
   {
@@ -390,7 +391,7 @@ export const products = [
       stars: 4.5,
       count: 130,
     },
-    priceCents: 1649,
+    priceCents: 129900, // ₹1299
     keywords: ["bathroom", "washroom", "mirrors", "home"],
   },
   {
@@ -401,7 +402,7 @@ export const products = [
       stars: 4.5,
       count: 248,
     },
-    priceCents: 2400,
+    priceCents: 99999, // ₹999
     keywords: ["pants", "sweatpants", "jogging", "apparel", "womens"],
   },
   {
@@ -412,7 +413,7 @@ export const products = [
       stars: 4.5,
       count: 117,
     },
-    priceCents: 2400,
+    priceCents: 79900, // ₹799
     keywords: ["accessories", "womens"],
   },
   {
@@ -423,7 +424,7 @@ export const products = [
       stars: 4,
       count: 126,
     },
-    priceCents: 2899,
+    priceCents: 149900, // ₹1499
     keywords: ["boxes", "food containers", "kitchen"],
   },
   {
@@ -434,7 +435,7 @@ export const products = [
       stars: 4.5,
       count: 1211,
     },
-    priceCents: 2250,
+    priceCents: 199900, // ₹1999
     keywords: ["coffeemakers", "kitchen", "appliances"],
   },
   {
@@ -445,7 +446,7 @@ export const products = [
       stars: 4.5,
       count: 363,
     },
-    priceCents: 3099,
+    priceCents: 309988,
     keywords: ["bedroom", "home"],
   },
   {
@@ -456,7 +457,7 @@ export const products = [
       stars: 4.5,
       count: 93,
     },
-    priceCents: 2110,
+    priceCents: 211065,
     keywords: ["bathroom", "home", "towels"],
   },
   {
@@ -467,7 +468,7 @@ export const products = [
       stars: 4,
       count: 89,
     },
-    priceCents: 3390,
+    priceCents: 339099,
     keywords: ["shoes", "running shoes", "footwear", "womens"],
   },
   {
@@ -478,7 +479,7 @@ export const products = [
       stars: 4,
       count: 3,
     },
-    priceCents: 10747,
+    priceCents: 107478,
     keywords: ["food blenders", "kitchen", "appliances"],
   },
   {
@@ -489,7 +490,7 @@ export const products = [
       stars: 5,
       count: 679,
     },
-    priceCents: 3899,
+    priceCents: 389945,
     keywords: ["mixing bowls", "baking", "cookware", "kitchen"],
   },
   {
@@ -500,7 +501,7 @@ export const products = [
       stars: 4.5,
       count: 1045,
     },
-    priceCents: 5799,
+    priceCents: 579968,
     keywords: ["kitchen", "kitchen towels", "tissues"],
   },
   {
@@ -511,7 +512,7 @@ export const products = [
       stars: 4.5,
       count: 3157,
     },
-    priceCents: 2400,
+    priceCents: 249099,
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
   },
 ].map((productDetails) => {

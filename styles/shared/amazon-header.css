@@ -19,6 +19,28 @@
   width: 180px;
 }
 
+/* SmartCart Text Logo Styles */
+.brand-logo {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
+  user-select: none;
+}
+
+/* This colors the "Cart" part to give it a sharp, branded look */
+.logo-accent {
+  color: #FCD200; /* Keeps your current yellow accent, or change to a crisp green/blue later if you want! */
+}
+@media (max-width: 575px) {
+  .brand-logo {
+    font-size: 19px;
+  }
+}
+
 @media (max-width: 800px) {
   .amazon-header-left-section {
     width: unset;
@@ -26,12 +48,14 @@
 }
 
 .header-link {
-  display: inline-block;
+  display: flex;
   padding: 6px;
   border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
   border: 1px solid rgba(0, 0, 0, 0);
+  align-items: center;
+  justify-content: center;
 }
 
 .header-link:hover {
@@ -110,11 +134,13 @@
 .returns-text {
   display: block;
   font-size: 13px;
+  font-weight: 700;
+
 }
 
 .orders-text {
   display: block;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
 }
 

@@ -2,15 +2,33 @@ import { products, getProduct } from "../../data/products.js";
 import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { updateCart, saveToStroage } from "../../data/cart.js";
 import { formatCurrency } from "../utils/money.js";
-import {
-  deliveryOptions,
-  getDeliveryOption,
-} from "../../data/dileveryOptions.js";
+import {deliveryOptions, getDeliveryOption} from "../../data/dileveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import { renderCheckoutHeader } from "./checkoutHeader.js";
 import dayjs from "https://esm.sh/dayjs";
 
 export function renderOrderSummary() {
+
+  // --- EMPTY CART STATE LOGIC ---
+  if (cart.length === 0) {
+    document.querySelector(".js-order-summary").innerHTML = `
+      <div class="empty-cart-container" >
+        <div class="empty-cart-title" >Your Cart is empty.</div>
+        <a href="amazon.html" class="button-primary empty-cart-link" >
+         Continue shopping
+        </a>
+      </div>
+    `;
+    
+    // Ensure the checkout header quantity updates to 0 items
+    renderCheckoutHeader();
+    // Re-render the payment block so it displays ₹0 instead of old prices
+    renderPaymentSummary();
+    return; // Stop the rest of the function execution
+  }
+
+  // Runs if cart has items
+
   let cartSummary = ``;
   cart.forEach((cartItem) => {
     let matchingProduct = getProduct(cartItem.productId);
@@ -86,7 +104,7 @@ export function renderOrderSummary() {
       shippingPrice =
         deliveryOption.deliveryDay === 7
           ? "FREE"
-          : `$${formatCurrency(deliveryOption.priceCents)}`;
+          : `₹${formatCurrency(deliveryOption.priceCents)}`;
 
       html += `
       <div class="delivery-option js-delivery-option"

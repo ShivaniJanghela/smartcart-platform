@@ -1,5 +1,7 @@
 import { cart, addToCart,updateCart} from "../data/cart.js";
 import { products } from "../data/products.js";
+
+function renderProducts(products) {
 let productHTML = ``;
 products.forEach((product) => {
   productHTML += `
@@ -61,10 +63,13 @@ products.forEach((product) => {
         </div>
         `;
 });
+document.querySelector(".products-grid").innerHTML = productHTML;
+}
+renderProducts(products);
 let cartQuantity=JSON.parse(localStorage.getItem("cartQuantity"))|| 0;
 document.querySelector(".cart-quantity").innerHTML = cartQuantity;
 
-document.querySelector(".products-grid").innerHTML = productHTML;
+
 
 document.querySelectorAll(".add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -77,4 +82,47 @@ document.querySelectorAll(".add-to-cart-button").forEach((button) => {
 
     addToCart(productId, productQuantity);
   });
+});
+
+
+
+let searchBar = document.querySelector(".search-bar");
+let searchBtn = document.querySelector(".search-button");
+let productsGrid = document.querySelector(".products-grid");
+
+// Handle search
+function handleSearch() {
+  let searchValue = searchBar.value.trim().toLowerCase();
+
+  // Empty search → redirect home
+  if (!searchValue) {
+    window.location.href = "amazon.html";
+    return;
+  }
+
+  // Filter products
+  let searchedItems = products.filter((product) => {
+    // check both keywords and product name
+    return (
+      product.keywords.some((kw) => kw.toLowerCase().includes(searchValue)) ||
+      product.name.toLowerCase().includes(searchValue)
+    );
+  });
+
+  // Render only matching items
+  if (searchedItems.length > 0) {
+    renderProducts(searchedItems);
+  } else {
+    productsGrid.innerHTML = `<p class="notFound">No products found for "${searchValue}"</p>`;
+  }
+}
+
+// Click search button
+searchBtn.addEventListener("click", handleSearch);
+
+// Press Enter in search bar
+searchBar.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    handleSearch();
+  }
 });

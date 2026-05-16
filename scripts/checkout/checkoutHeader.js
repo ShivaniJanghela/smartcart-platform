@@ -7,10 +7,11 @@ import { cart } from "../../data/cart.js";
     });
   const checkoutHeaderHTML = `  <div class="header-content">
         <div class="checkout-header-left-section">
-          <a href="amazon.html">
-            <img class="amazon-logo" src="images/amazon-logo.png">
-            <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png">
-          </a>
+         <a href="amazon.html" class="header-link" style="text-decoration: none;">
+           <div class="brand-logo">
+             Smart<span class="logo-accent">Cart</span>
+           </div>
+         </a>
         </div>
 
         <div class="checkout-header-middle-section">
