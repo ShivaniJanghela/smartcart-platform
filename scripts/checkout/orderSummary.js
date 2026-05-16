@@ -14,7 +14,7 @@ export function renderOrderSummary() {
     document.querySelector(".js-order-summary").innerHTML = `
       <div class="empty-cart-container" >
         <div class="empty-cart-title" >Your Cart is empty.</div>
-        <a href="amazon.html" class="button-primary empty-cart-link" >
+        <a href="index.html" class="button-primary empty-cart-link" >
          Continue shopping
         </a>
       </div>

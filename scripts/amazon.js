@@ -96,7 +96,7 @@ function handleSearch() {
 
   // Empty search → redirect home
   if (!searchValue) {
-    window.location.href = "amazon.html";
+    window.location.href = "index.html";
     return;
   }
 

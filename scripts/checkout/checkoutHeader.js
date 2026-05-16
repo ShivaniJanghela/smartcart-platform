@@ -7,7 +7,7 @@ import { cart } from "../../data/cart.js";
     });
   const checkoutHeaderHTML = `  <div class="header-content">
         <div class="checkout-header-left-section">
-         <a href="amazon.html" class="header-link" style="text-decoration: none;">
+         <a href="index.html" class="header-link" style="text-decoration: none;">
            <div class="brand-logo">
              Smart<span class="logo-accent">Cart</span>
            </div>
@@ -16,7 +16,7 @@ import { cart } from "../../data/cart.js";
 
         <div class="checkout-header-middle-section">
           Checkout (<a class="return-to-home-link"
-            href="amazon.html">${cartQuantity} items</a>)
+            href="index.html">${cartQuantity} items</a>)
         </div>
 
         <div class="checkout-header-right-section">

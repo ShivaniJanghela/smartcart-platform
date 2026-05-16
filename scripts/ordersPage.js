@@ -22,7 +22,7 @@ function renderOrdersPage() {
      You haven't placed any orders yet
     </div>
     
-    <a href="amazon.html" style="display: inline-block; background-color: #FFD814; color: #0F1111; text-decoration: none; padding: 12px 32px; font-size: 17px; font-weight: 100; border-radius: 8px; box-shadow: 0 2px 5px rgba(213,217,217,.5); transition: background-color 0.1s;">
+    <a href="index.html" style="display: inline-block; background-color: #FFD814; color: #0F1111; text-decoration: none; padding: 12px 32px; font-size: 17px; font-weight: 100; border-radius: 8px; box-shadow: 0 2px 5px rgba(213,217,217,.5); transition: background-color 0.1s;">
       Continue shopping
     </a>
   </div>
